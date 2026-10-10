@@ -1,4 +1,4 @@
-# Constellation: a multi-agent banking desk (simulated)
+# Constellation: a multi-agent banking desk 
 
 A working MVP of a real-time banking assistant where a **Supervisor agent** routes natural-language requests to
 **three specialist agents** that call **simulated banking APIs**. Built for the Wrench Wise AI/ML internship assignment.
@@ -10,7 +10,7 @@ Instead of a plain chat box, the UI is a **live "constellation"**: the Superviso
 tool is a small satellite that lights up the instant it is called. Next to it, a **flight recorder** logs every routing decision,
 tool call, guardrail hit and approval in order, with the raw JSON one click away. You can *see* the agent architecture working.
 
-## Quick start (about 2 minutes)
+## Quick start 
 ```bash
 cd constellation-bank
 python3 -m venv .venv && source .venv/bin/activate      # optional
@@ -25,7 +25,7 @@ python3 -m pytest -q tests                               # 11 offline tests
 mid-request the app falls back to offline automatically. The badge top-right shows which mode you are in.
 Models are configurable (`SUPERVISOR_MODEL`, `AGENT_MODEL`), so you can point the agents at an experimental model by changing one env var.
 
-## Architecture (mapped to the reference diagram)
+## Architecture 
 | Reference layer | In this MVP |
 |---|---|
 | 1-2 Channels / API layer | Web UI + FastAPI, NDJSON event streaming (`backend/main.py`) |
@@ -53,7 +53,7 @@ Models are configurable (`SUPERVISOR_MODEL`, `AGENT_MODEL`), so you can point th
 6. **Transfer** to a saved payee with approval; ₹5L is blocked by **policy**
 7. **Multi-agent**: "Something looks off on my card, and can I get a ₹5 lakh loan?" goes to Risk, then Credit, then merged
 
-## Design decisions (for the technical discussion)
+## Design decisions 
 - **Supervisor uses forced tool-calling** for routing, so the plan is structured JSON, not parsed prose.
 - **Tool boundaries per agent** (least privilege): the Credit agent cannot block cards; the Risk agent cannot move money.
 - **Deterministic numbers**: all figures (risk scores, EMI, eligibility) come from tools, never from the LLM.
